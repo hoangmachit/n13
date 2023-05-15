@@ -6,7 +6,6 @@ import AdminFormLogin from "../../components/admin/AdminFormLogin";
 export default function AdminLogin() {
   return (
     <>
-      <h2>Admin Login Page</h2>
       <AdminFormLogin />
     </>
   );

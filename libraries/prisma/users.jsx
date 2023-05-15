@@ -18,11 +18,14 @@ export async function createUser(user) {
   }
 }
 
-export async function getUserById(id = 'clhk1iezs0000u06s6qq2roze') {
+export async function getUserById(email = "hoangmach.website@gmail.com") {
   try {
     const user = await prisma.user.findUnique({
-      where: { id }
+      where: {
+        email: email,
+      },
     });
+    console.log("email", email);
     return { user };
   } catch (error) {
     return { error };

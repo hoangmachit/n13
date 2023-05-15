@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 export default function AdminFormLogin() {
   const router = useRouter();
   const email = useRef(null);
@@ -104,16 +105,16 @@ export default function AdminFormLogin() {
                     </label>
                   </div>
                 </div>
-                <a
-                  href="#"
+                <Link
+                  href={'/forgot-password'}
                   className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Forgot password?
-                </a>
+                </Link>
               </div>
               <button
                 type="submit"
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="w-full text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Sign in
               </button>
