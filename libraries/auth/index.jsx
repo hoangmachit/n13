@@ -25,4 +25,11 @@ const isMypageAuthenticated = async (request) => {
   }
   return authenticated;
 };
-export { isAdminAuthenticated, isMypageAuthenticated };
+const isAdminLogout = async () => {
+  const res = await fetch(`${process.env.baseAPI}/admin/logout`, {
+    method: "POST",
+  });
+  const data = await res.json();
+  return data;
+};
+export { isAdminAuthenticated, isMypageAuthenticated, isAdminLogout };
