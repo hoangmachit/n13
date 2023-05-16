@@ -4,7 +4,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-import { getUserById } from "../../../../../../libraries/prisma/users";
+import { getUserByEmail } from "../../../../../../libraries/prisma/users";
 const prisma = new PrismaClient();
 export const authOptions = {
     session: {
@@ -28,7 +28,7 @@ export const authOptions = {
                 password: { label: "Credentials password", type: "password", value: `admin123` }
             },
             async authorize(credentials, req) {
-                const { user } = await getUserById('clhk2blca0006u06sl11upsom');
+                const { user } = await getUserByEmail();
                 return await {
                     id: user.id,
                     name: user.name,

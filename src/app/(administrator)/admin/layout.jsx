@@ -9,12 +9,10 @@ import "../../../../public/admin/assets/vendor/fonts/boxicons.css";
 
 import Provider from "../../Provider";
 import AdminFooter from "../../components/admin/AdminFooter";
-import AdminUserList from "../../components/admin/Users/List";
 import AdminSideBar from "../../components/admin/AdminSidebar";
 import AdminNavbar from "../../components/admin/AdminNavbar";
 import Script from "next/script";
 export default async function AdminLayout({ children }) {
-  
   return (
     <html lang="en">
       <head>
@@ -24,7 +22,6 @@ export default async function AdminLayout({ children }) {
       <body>
         <div className="light-style layout-menu-fixed">
           <Provider>
-            {/* <AdminHeader /> */}
             <div className="layout-wrapper layout-content-navbar">
               <div className="layout-container">
                 <AdminSideBar />

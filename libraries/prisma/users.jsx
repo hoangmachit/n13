@@ -18,7 +18,7 @@ export async function createUser(user) {
   }
 }
 
-export async function getUserById(email = "hoangmach.website@gmail.com") {
+export async function getUserByEmail(email = "hoangmach.website@gmail.com") {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -26,6 +26,17 @@ export async function getUserById(email = "hoangmach.website@gmail.com") {
       },
     });
     console.log("email", email);
+    return { user };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function getUserById(id = null) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id },
+    });
     return { user };
   } catch (error) {
     return { error };

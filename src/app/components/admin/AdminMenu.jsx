@@ -10,28 +10,28 @@ export default function AdminMenu() {
           </a>
         </li>
         <li className="menu-header small text-uppercase">
-          <span className="menu-header-text">Pages</span>
+          <span className="menu-header-text">Account</span>
         </li>
         <li className="menu-item">
           <a href="" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-dock-top"></i>
-            <div data-i18n="Account Settings">Account Settings</div>
+            <div data-i18n="User">Users</div>
           </a>
           <ul className="menu-sub">
             <li className="menu-item">
-              <a href="" className="menu-link">
-                <div data-i18n="Account">Account</div>
-              </a>
+              <Link href={"/admin/users"} className="menu-link">
+                <div data-i18n="Account">List of User</div>
+              </Link>
             </li>
             <li className="menu-item">
-              <a href="" className="menu-link">
-                <div data-i18n="Notifications">Notifications</div>
-              </a>
+              <Link href={`/admin/users/roles`} className="menu-link">
+                <div data-i18n="Roles">Roles</div>
+              </Link>
             </li>
             <li className="menu-item">
-              <a href="" className="menu-link">
-                <div data-i18n="Connections">Connections</div>
-              </a>
+              <Link href={`/admin/users/permissions`} className="menu-link">
+                <div data-i18n="Permissions">Permissions</div>
+              </Link>
             </li>
           </ul>
         </li>

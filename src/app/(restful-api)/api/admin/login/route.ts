@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { getUserById } from "../../../../../../libraries/prisma/users";
+import { getUserByEmail } from "../../../../../../libraries/prisma/users";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 export async function POST(request: Request) {
   const body = await request.json();
-  const { user } = await getUserById();
+  const { user } = await getUserByEmail();
   console.log("user=", user);
   if (user) {
     const token = await jwt.sign({ userId: user.id }, "user", {
