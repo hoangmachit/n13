@@ -12,17 +12,17 @@ datasource db {
 
 model Account {
   id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
+  userId            String  @db.VarChar(255)
+  type              String  @db.VarChar(255)
+  provider          String  @db.VarChar(255)
+  providerAccountId String  @db.VarChar(255)
   refresh_token     String? @db.Text
   access_token      String? @db.Text
   expires_at        Int?
-  token_type        String?
-  scope             String?
+  token_type        String? @db.VarChar(255)
+  scope             String? @db.VarChar(255)
   id_token          String? @db.Text
-  session_state     String?
+  session_state     String? @db.VarChar(255)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -31,26 +31,66 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
+  sessionToken String   @unique @db.VarChar(255)
+  userId       String   @db.VarChar(255)
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
+  id            String      @id @default(cuid())
+  name          String?     @db.VarChar(255)
+  email         String?     @unique
   emailVerified DateTime?
-  image         String?
+  image         String?     @db.VarChar(255)
+  password      String?     @db.VarChar(255)
   accounts      Account[]
   sessions      Session[]
+  role          Role[]
+  user_role     User_Role[]
 }
 
 model VerificationToken {
-  identifier String
+  identifier String   @db.VarChar(255)
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Role {
+  id              Int               @id @default(autoincrement())
+  role_name       String?           @db.VarChar(255)
+  created_at      DateTime
+  updated_at      DateTime
+  deleted_at      DateTime?
+  permisson_group Permisson_Group[]
+  user            User?             @relation(fields: [userId], references: [id])
+  userId          String?           @db.VarChar(255)
+  user_role       User_Role[]
+}
+
+model Permission {
+  id              Int               @id @default(autoincrement())
+  permission_name String?           @db.VarChar(255)
+  created_at      DateTime
+  updated_at      DateTime
+  deleted_at      DateTime?
+  permisson_group Permisson_Group[]
+}
+
+model Permisson_Group {
+  id            Int        @id @default(autoincrement())
+  role_id       Int
+  permission_id Int
+  role          Role       @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  permission    Permission @relation(fields: [permission_id], references: [id], onDelete: Cascade)
+}
+
+model User_Role {
+  id      Int    @id @default(autoincrement())
+  user_id String @db.VarChar(255)
+  role_id Int
+  role    Role   @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }

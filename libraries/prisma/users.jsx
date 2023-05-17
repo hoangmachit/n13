@@ -25,7 +25,6 @@ export async function getUserByEmail(email = "hoangmach.website@gmail.com") {
         email: email,
       },
     });
-    console.log("email", email);
     return { user };
   } catch (error) {
     return { error };

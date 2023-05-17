@@ -1,13 +1,11 @@
 "use client";
 import { isAdminLogout } from "../../../../libraries/auth";
-import { useRouter } from "next/navigation";
 export default function AdminNavbarUser() {
-  const route = useRouter();
   const handleLogout = async (e) => {
     e.preventDefault();
     const status = await isAdminLogout();
     if (status) {
-      route.push("/login");
+      window.location.href = "/login";
     }
   };
   return (
